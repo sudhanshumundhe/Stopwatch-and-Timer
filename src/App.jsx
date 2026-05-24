@@ -376,7 +376,7 @@ export default function App() {
     <div className="page" onClick={initAudio}>
       <div className="app">
         <header className="app-header">
-          <div className="brand">CHRONO<span className="brand-dot">◆</span>LAB</div>
+          <div className="brand">Watch <span className="brand-dot">◆</span>App</div>
           <div className="tabs">
             <button className={`tab ${tab === "stopwatch" ? "tab-active" : ""}`}
               onClick={() => setTab("stopwatch")}>Stopwatch</button>
