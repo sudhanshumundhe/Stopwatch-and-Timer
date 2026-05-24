@@ -1,165 +1,541 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 
-body {
+:root {
+  --bg: #080c10;
+  --surface: #0d1117;
+  --panel: #111820;
+  --border: #1e2d3d;
+  --border2: #243447;
+  --accent: #00d4ff;
+  --accent2: #00ff9d;
+  --warn: #ff6b35;
+  --muted: #3a5068;
+  --text: #c8dde8;
+  --text-dim: #4a6478;
+  --glow: rgba(0, 212, 255, 0.18);
+  --glow2: rgba(0, 255, 157, 0.18);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Page ── */
+.page {
+  width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle, #e0e7ff, #fdf2f8);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--text);
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── App shell ── */
+.app {
+  width: 100%;
+  max-width: 520px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+}
+
+/* ── Header ── */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.brand {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--glow);
+}
+
+.brand-dot {
+  color: var(--accent2);
+  font-size: 11px;
+  margin: 0 1px;
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.tab {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 7px 14px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab-active {
+  background: var(--border2);
+  color: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+
+/* ── Main ── */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
 }
 
-.app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.title {
-  font-size: 2.3rem;
-  margin-bottom: 20px;
-  color: #374151;
-}
-
-/* WRAP */
-.wrap {
-  display: flex;
-  gap: 50px;
-}
-
-/* WATCH */
-.watch {
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(25px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: pop 0.8s ease;
-}
-
-/* TITLE */
-.watch h2 {
-  position: absolute;
-  top: 40px;
-  color: #6b7280;
-}
-
-/* CENTER DIAL */
-.dial {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-/* TIMER RING */
-.ring {
-  transition: 0.3s linear;
-}
-
-/* TIME */
-.time {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* CONTROLS */
-.controls {
-  position: absolute;
-  bottom: 35px;
-  display: flex;
-  gap: 8px;
-}
-
-button {
-  border: none;
-  padding: 10px 14px;
-  border-radius: 25px;
-
-  cursor: pointer;
-
-  font-size: 0.75rem;
-  font-weight: 600;
-
-  color: white;
-
-  background: linear-gradient(135deg, #6366f1, #22c55e);
-
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-  transition: 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-3px) scale(1.05);
-  filter: brightness(1.1);
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-/* controls spacing better */
-.controls {
-  position: absolute;
-  bottom: 35px;
-  display: flex;
-  gap: 10px;
-}
-
-/* INPUTS */
-.inputs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-input {
-  width: 60px;
-  padding: 6px;
-  border-radius: 8px;
-  border: none;
+/* ── Footer ── */
+.app-footer {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
   text-align: center;
+  padding: 10px 0 14px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
-/* LAPS */
-.laps {
+/* ── Panel ── */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+}
+
+/* ── Sliding digit display ── */
+.display {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 26px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.display::before {
+  content: '';
   position: absolute;
-  bottom: 80px;
-  font-size: 0.7rem;
-  color: #374151;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.04) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-/* ANIMATION */
-@keyframes pop {
+.display.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.15), inset 0 0 24px rgba(0, 212, 255, 0.04);
+}
+
+.display.display-done {
+  border-color: var(--warn);
+  box-shadow: 0 0 24px rgba(255, 107, 53, 0.25), inset 0 0 24px rgba(255, 107, 53, 0.06);
+  animation: flash-done 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes flash-done {
   from {
-    transform: scale(0.6);
-    opacity: 0;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
   }
 
   to {
-    transform: scale(1);
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.5);
+  }
+}
+
+/* Digit group */
+.digit-group {
+  display: flex;
+  align-items: center;
+}
+
+.digit-slot {
+  position: relative;
+  overflow: hidden;
+  height: 80px;
+  width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digit-inner {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 66px;
+  line-height: 1;
+  color: var(--accent);
+  text-shadow: 0 0 28px rgba(0, 212, 255, 0.55);
+  display: block;
+  text-align: center;
+  width: 100%;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+}
+
+.digit-inner.slide-exit {
+  transform: translateY(-110%);
+  opacity: 0;
+}
+
+.digit-inner.slide-enter {
+  transform: translateY(110%);
+  opacity: 0;
+}
+
+.display-done .digit-inner {
+  color: var(--warn);
+  text-shadow: 0 0 28px rgba(255, 107, 53, 0.6);
+}
+
+.digit-sep {
+  font-family: 'Orbitron', monospace;
+  font-size: 50px;
+  font-weight: 900;
+  color: var(--border2);
+  margin: 0 3px;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.digit-cs {
+  font-family: 'Orbitron', monospace;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 4px;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.display.active .digit-cs {
+  color: var(--accent2);
+}
+
+/* ── Progress bar ── */
+.progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.sw-fill {
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+}
+
+.timer-fill {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.done-fill {
+  background: var(--warn);
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1;
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 13px 10px;
+  border-radius: 3px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-start {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+}
+
+.btn-start:hover:not(:disabled) {
+  background: #33ddff;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.6);
+}
+
+.btn-pause {
+  background: transparent;
+  border-color: var(--warn);
+  color: var(--warn);
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.2);
+}
+
+.btn-pause:hover {
+  background: rgba(255, 107, 53, 0.1);
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.35);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border2);
+  color: var(--muted);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+
+/* ── Laps ── */
+.laps {
+  max-height: 130px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+.lap-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  animation: slide-in 0.2s ease both;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lap-idx {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.lap-time {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  color: var(--accent2);
+}
+
+/* ── Timer inputs ── */
+.time-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 22px 16px;
+}
+
+.time-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.t-input {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(34px, 10vw, 54px);
+  width: clamp(88px, 24vw, 118px);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border2);
+  color: var(--accent);
+  text-align: center;
+  outline: none;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  transition: border-color 0.2s;
+  -moz-appearance: textfield;
+  padding: 0 4px 4px;
+}
+
+.t-input::-webkit-inner-spin-button,
+.t-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.t-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.t-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+}
+
+.t-sep {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: 40px;
+  color: var(--border2);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+/* ── Done badge ── */
+.done-badge {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--warn);
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 107, 53, 0.08);
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 3px;
+  animation: pulse-badge 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-badge {
+  from {
+    opacity: 0.7;
+  }
+
+  to {
     opacity: 1;
   }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .wrap {
-    flex-direction: column;
+/* ── Presets ── */
+.presets {
+  display: flex;
+  gap: 6px;
+}
+
+.preset-btn {
+  flex: 1;
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 4px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  box-shadow: 0 0 8px rgba(0, 255, 157, 0.15);
+}
+
+/* ── Responsive ── */
+@media (max-width: 420px) {
+  .app {
+    padding: 0 14px;
+  }
+
+  .brand {
+    font-size: 13px;
+  }
+
+  .panel {
+    gap: 12px;
+  }
+
+  .display {
+    padding: 18px 16px;
+  }
+
+  .digit-slot {
+    width: 42px;
+    height: 64px;
+  }
+
+  .digit-inner {
+    font-size: 52px;
+  }
+
+  .laps {
+    max-height: 100px;
   }
 }
